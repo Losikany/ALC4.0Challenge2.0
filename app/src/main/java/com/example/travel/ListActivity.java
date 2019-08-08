@@ -1,32 +1,26 @@
 package com.example.travel;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
     ArrayList<TravelDeals> deals;
-    private FirebaseDatabase mFirebaseDataBase;
-    private ChildEventListener mChildListener;
-    private DatabaseReference mDatabaseReference;
-    TextView tvDeals;
+
     RecyclerView rvDeals;
 
     @Override
@@ -42,11 +36,11 @@ public class ListActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_activity_menu, menu);
 
-        MenuItem insertMenu=menu.findItem(R.id.insert_menu);
-        if (FirebaseUtil.isAdmin==true){
+        MenuItem insertMenu = menu.findItem(R.id.insert_menu);
+        if (FirebaseUtil.isAdmin == true) {
             insertMenu.setVisible(true);
 
-        }else{
+        } else {
             insertMenu.setVisible(false);
 
         }
@@ -56,9 +50,9 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.insert_menu:
-                Intent intent=new Intent(this, DealActivity.class);
+                Intent intent = new Intent(this, DealActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.logout_menu:
@@ -96,8 +90,9 @@ public class ListActivity extends AppCompatActivity {
         rvDeals.setLayoutManager(dealsLayoutManager);
         FirebaseUtil.attachListener();
     }
-    public void showMenu(){
-invalidateOptionsMenu();
+
+    public void showMenu() {
+        invalidateOptionsMenu();
 
     }
 }

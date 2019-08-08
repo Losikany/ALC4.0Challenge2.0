@@ -1,24 +1,50 @@
 package com.example.travel;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class TravelDeals implements Serializable {
+public class TravelDeals implements Parcelable {
+
     private String id;
     private String title;
     private String description;
     private String price;
+
     private String imageUrl;
     private String imageName;
 
-    public TravelDeals (){}
+    public TravelDeals(){}
+
     public TravelDeals(String title, String description, String price, String imageUrl, String imageName) {
-        this.setImageName(imageName);
         this.setId(id);
         this.setTitle(title);
         this.setDescription(description);
         this.setPrice(price);
         this.setImageUrl(imageUrl);
+        this.setImageName(imageName);
     }
+
+    protected TravelDeals(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        description = in.readString();
+        price = in.readString();
+        imageUrl = in.readString();
+    }
+
+
+    public static final Creator<TravelDeals> CREATOR = new Creator<TravelDeals>() {
+        @Override
+
+        public TravelDeals createFromParcel(Parcel in) {
+            return new TravelDeals(in);
+        }
+
+        @Override
+        public TravelDeals[] newArray(int size) {
+            return new TravelDeals[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -59,6 +85,24 @@ public class TravelDeals implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(price);
+        dest.writeString(imageUrl);
+    }
+
     public String getImageName() {
         return imageName;
     }

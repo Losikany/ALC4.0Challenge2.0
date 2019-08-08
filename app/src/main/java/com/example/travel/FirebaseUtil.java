@@ -1,10 +1,9 @@
 package com.example.travel;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,8 +18,6 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class FirebaseUtil {
     public static FirebaseDatabase mFirebaseDatabase;
@@ -71,13 +68,6 @@ public class FirebaseUtil {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
-                           /* new AuthUI.IdpConfig.PhoneBuilder().build(),
-
-                            new AuthUI.IdpConfig.FacebookBuilder().build(),
-                            new AuthUI.IdpConfig.TwitterBuilder().build());*/
-
-
-// Create and launch sign-in intent
         caller.startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
